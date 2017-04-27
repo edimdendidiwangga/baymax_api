@@ -1,0 +1,38 @@
+<% include ../partials_admin/header %>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+
+              <!-- coding here -->
+              <form action="/admin/add_diagnosis" method="post" class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select name="penyakit_id">
+                      <% penyakit.forEach(penyakit => { %>
+                        <option value="<%= penyakit.dataValues.id%>">
+                          <%= penyakit.dataValues.name %>
+                        </option>
+                        <% }) %>
+                      </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea name="indication" id="indication" class="materialize-textarea" data-length="1500"></textarea>
+                    <label for="indication">Input disease indication</label>
+                  </div>
+                </div>
+
+                <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                  <i class="material-icons right">send</i>
+                </button>
+              </form>
+
+            </div>
+        </div>
+    </div>
+
+
+<% include ../partials_admin/footer %>

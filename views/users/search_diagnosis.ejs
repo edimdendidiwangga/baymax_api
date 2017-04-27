@@ -1,0 +1,51 @@
+<% include ../partials/header %>
+
+    <div class="container">
+        <div class="section">
+            <h4>Search Diagnosis</h4>
+            <br>
+            <div class="row">
+                <form class="col s12" action="/users/searchDiagnosis" method="post">
+                    <div class="input_fields_wrap">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">edit</i>
+                                <input id="diagnosis" name="diagnosis" type="text" class="active validate diagnosisResult" required>
+                                <label for="diagnosis">Diagnosis</label>
+                            </div>
+                            <!-- <div class="input-field col s1">
+                            <a class="btn-floating btn-flat blue right" id="add_field_button"><i class="material-icons">add</i></a>
+                        </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/selectize/js/standalone/selectize.js"></script>
+    <script>
+        var item = '<%= data %>'.split(",")
+        var items = item.map(function(x) {
+            return {
+                item: x
+            };
+        });
+        $('.diagnosisResult').selectize({
+            delimiter: ',',
+            persist: false,
+            options: items,
+            labelField: "item",
+            valueField: "item",
+            sortField: 'item',
+            searchField: 'item'
+        });
+    </script>
+    <% include ../partials/footer %>

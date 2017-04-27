@@ -1,0 +1,46 @@
+<% include ../partials_admin/header %>
+
+    <div class="container">
+        <div class="section">
+            <div class="row">
+              <h2>Diagnosis List</h2>
+              <a href='/admin/add_diagnosis' class="waves-effect waves-light btn"><i class="material-icons left">assignment</i>ADD</a>
+              <br>
+              <table id="example" class="striped" width="50%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>penyakit</th>
+                    <th>gejala</th>
+                    <th>actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% gejala.forEach(list => { %>
+                    <tr>
+                      <td><%= list.Penyakit.name %></td>
+                      <td><%= list.dataValues.gejala %></td>
+                      <td><a href="edit_gejala/<%= list.id %>" class="btn-flat blue"><i class="material-icons">edit</i></a></td>
+                      <td><a id="delete" onclick="return confirm('Are you sure?')" href="delete_gejala/<%= list.id %>" class="btn-flat red"><i class="material-icons">delete</i></a></td>
+                    </tr>
+                  <% }) %>
+                </tbody>
+              </table>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <script type="text/javascript">
+    $(document).ready(function() {
+      $('#example').DataTable( {
+        "scrollY":        "200px",
+        "scrollCollapse": true,
+        "paging":         false
+      } );
+    } );
+    </script>
+
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script> -->
+
+<% include ../partials_admin/footer %>

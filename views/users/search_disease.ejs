@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+    <div class="container">
+        <div class="section">
+          <h4>Search Disease</h4>
+          <br>
+            <div class="row">
+                <form class="col s12" action="/users/searchDisease" method="post">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">edit</i>
+                            <input placeholder="Disease" name="disease" id="disease" type="text" class="active validate diseaseResult" required>
+                            <label for="disease">Disease</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <button class="btn" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="/selectize/js/standalone/selectize.js"></script>
+    <script>
+     var item = '<%= data %>'.split(",")
+    var items = item.map(function(x) { return { item: x }; });
+    $('.diseaseResult').selectize({
+      delimiter: ',',
+      persist: false,
+      options: items,
+      maxOptions: 1,
+      labelField: "item",
+      valueField: "item",
+      sortField: 'item',
+      searchField: 'item'
+    });
+    </script>
+
+    <% include ../partials/footer %>

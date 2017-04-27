@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+    <div class="section no-pad-bot" id="index-banner">
+        <div class="container">
+            <div class="section">
+                <div class="row">
+                    <div class="collection">
+                        <a href="#!" class="collection-item">Penyakit yang anda cari :</a>
+                        <a href="#!" class="collection-item active">
+                            <%= input.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) %>
+                        </a>
+                    </div>
+                    <%  if(data.length == null || data.length == 0){ %>
+                        <h3>The data searched does not exist :=( </h3>
+                        <%  } else { %>
+                            <% data.forEach(data=>{ %>
+
+                                <ul class="collection with-header">
+                                    <li class="collection-header">
+                                        <h4><%= data.name.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) %></h4></li>
+                                    <li class="collection-item">
+                                        <%= data.deskripsi %>
+                                    </li>
+
+                                    <li class="collection-item">Solusi :
+                                        <ul class="collection">
+                                            <% let i=1; data.solusi.split(",").forEach(data=>{ %>
+                                                <li class="collection-item">
+                                                    <%= i++ %>.
+                                                        <%= data %>
+                                                </li>
+                                                <% }) %>
+                                        </ul>
+                                    </li>
+                                    <!-- <li class="collection-item">Diagnosis :
+          <ul class="collection">
+            <li class="collection-item"><%= data.Diagnosas.gejala %></li>
+
+          </ul>
+        </li> -->
+                                </ul>
+
+                                <hr>
+                                <% }) %>
+                                    <%  } %>
+                </div>
+            </div>
+        </div>
+
+        <% include ../partials/footer %>
