@@ -5,7 +5,7 @@
             <h4>Register</h4>
             <br>
             <div class="row">
-                <form class="col s12" action="/users/register" method="post">
+                <form class="col s12" action="/users/signup" method="post">
                     <div class="row">
                         <div class="input-field col s6">
                             <i class="material-icons prefix">perm_identity</i>
@@ -35,16 +35,16 @@
                             <label for="password">Password</label>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="input-field col s6">
-                            <i class="material-icons prefix">edit</i>
-                            <input placeholder="Diagnosis" name="diagnosa" id="diagnosis" type="text" class="active validate" required>
-                            <label for="diagnosis">Diagnosis</label>
-                        </div>
-                    </div> -->
-
                     <div class="row">
                         <div class="input-field col s6">
+                            <i class="material-icons prefix">perm_phone_msg</i>
+                            <input placeholder="Phone" id="phone" type="text" name="phone" class="active validate" required>
+                            <label for="phone">Phone</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                          <input type="hidden" value="user" name="role">
                             <button class="btn" type="submit">Submit</button>
                         </div>
                     </div>
