@@ -25,4 +25,8 @@ router.post('/resultDiagnosis', function(req, res, next) {
   res.render('pages/search_result_diagnosis');
 });
 
+router.post('/searchVoice', (req, res, next) => {
+  
+});
+
 module.exports = router;
