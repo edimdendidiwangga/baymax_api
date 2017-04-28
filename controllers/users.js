@@ -15,12 +15,15 @@ methods.signup_page = function(req, res){
 methods.signin = function(req, res){
   let user = req.user
   let token = jwt.sign({
+    name: req.user.name,
     username: req.user.username,
+    email: req.user.email,
     role: req.user.role}, process.env.SECRET_KEY);
   var decoded = jwt.decode(token);
-  var sess = req.session
-  sess.decoded = decoded
-
+  req.session.name = decoded.name
+  req.session.email = decoded.email
+  req.session.username = decoded.username
+  req.session.role = decoded.role
   res.redirect('/')
 }
 
@@ -32,7 +35,26 @@ methods.signup = function(req, res){
     if(error){
       res.json({error})
     } else {
-      res.redirect('/')
+      let received = req.body.email
+      var api_key = 'key-06f7f089efacb7cce55e79eaed063b43';
+      var domain = 'sandboxdc8d329f2cc44c62b42a0b13f715abb6.mailgun.org';
+      var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+      var list = mailgun.lists('list_baymax@sandboxdc8d329f2cc44c62b42a0b13f715abb6.mailgun.org');
+
+
+      var person = {
+        subscribed: true,
+        address: req.body.email,
+        name: req.body.name,
+        vars: {age: 20}
+      };
+
+      list.members().create(person, function (err, data) {
+        // `data` is the member details
+        console.log(data);
+        res.redirect('/')
+      });
+
     }
   })
 }

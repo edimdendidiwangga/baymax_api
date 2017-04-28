@@ -3,8 +3,11 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  let decoded = req.session.decoded
-  res.render('index', {decoded : decoded || '0'});
+
+  res.render('index', {
+    layout:false,
+    session: req.session
+});
 });
 
 router.get('/searchDisease', function(req, res, next) {
@@ -15,14 +18,25 @@ router.get('/searchDiagnosis', function(req, res, next) {
   res.render('pages/search_diagnosis');
 });
 
-router.post('/resultDisease', function(req, res, next) {
-  // coding here
-  res.render('pages/search_result_disease');
-});
+router.post('/sendEmail', function(req, res){
+  let nameUser = req.body.name;
+  let emailUser = req.body.email;
+  let dataResult = req.body.dataResult;
+  var api_key = 'key-06f7f089efacb7cce55e79eaed063b43';
+  var domain = 'sandboxdc8d329f2cc44c62b42a0b13f715abb6.mailgun.org';
+  var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
+    var data = {
+    from: 'Edim <edimdendi@gmail.com>',
+    to: emailUser,
+    subject: 'Baymax Apps',
+    text: dataResult
+  };
+  mailgun.messages().send(data, function (error, body) {
+    console.log(body)
+    res.redirect('/')
+  });
+})
 
-router.post('/resultDiagnosis', function(req, res, next) {
-  // coding here
-  res.render('pages/search_result_diagnosis');
-});
+
 
 module.exports = router;

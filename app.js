@@ -13,14 +13,24 @@ mongoose.connect('mongodb://localhost/baymax_api')
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var diagnosis = require('./routes/diagnosis');
+var disease = require('./routes/disease');
 
 const app = express()
+app.use(cookieParser('sssshhhh'));
 app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  cookieName: 'session',
+  secret: 'sssshhhh',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true,
+  resave: true,
+  saveUninitialized: true
 }))
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -35,6 +45,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/diagnosis', diagnosis);
+app.use('/disease', disease);
 
 app.use(passport.initialize());
 

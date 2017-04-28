@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 var diseaseSchema = new Schema({
   name:  String,
-  solutions: String,
+  solutions: Array,
   description: String,
   list_diagnoses: [{
     type: Schema.Types.ObjectId, ref: 'Diagnosis'
