@@ -3,7 +3,7 @@
                 <div class="container">
                     <br><br>
 
-                    <%= JSON.stringify(session.name) %>
+
 
 
                     <h1 class="header center orange-text">Baymax Apps</h1>
@@ -13,8 +13,28 @@
                     </div>
                     <div class="row center">
                         <a href="/searchDisease" id="" class="btn-large waves-effect waves-light orange">Search Disease</a>
-                        <a href="/searchDiagnosis" id="" class="btn-large waves-effect waves-light green darken-2">Search Diagnosis</a>
+                        <a href="#modal1" class="btn-large waves-effect waves-light green darken-2">Search Hospitals</a>
                     </div>
                 </div>
 
+                  <!-- Modal Structure -->
+                  <div id="modal1" class="modal">
+                    <div class="modal-content">
+                      <h4>Search Hospitals</h4>
+                      <p>
+                        <form action="/searchHospitals" method="post">
+                          <div class="row">
+                            <div class="input-field col s6">
+                              <input id="first_name2" type="text" name="locationName" class="validate">
+                              <label class="active" for="first_name2">Location Name</label>
+                            </div>
+                          </div>
+
+                      </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn">Search</button>
+                      </form>
+                    </div>
+                  </div>
     <% include ./partials/footer %>

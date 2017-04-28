@@ -25,12 +25,22 @@
                                         <%= data.description %>
                                     </li>
 
-                                    <li class="collection-item">Solusi :
+                                    <li class="collection-item">Solutions :
                                         <ul class="collection">
                                             <% let i=1; data.solutions.forEach(data=>{ %>
                                                 <li class="collection-item">
                                                     <%= i++ %>.
                                                         <%= data %>
+                                                </li>
+                                                <% }) %>
+                                        </ul>
+                                    </li>
+                                    <li class="collection-item">Diagnoses :
+                                        <ul class="collection">
+                                            <% let j=1; data.list_diagnoses.forEach(data=>{ %>
+                                                <li class="collection-item">
+                                                    <%= j++ %>.
+                                                        <%= data.name %>
                                                 </li>
                                                 <% }) %>
                                         </ul>

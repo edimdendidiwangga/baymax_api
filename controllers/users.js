@@ -5,11 +5,17 @@ require('dotenv').config()
 const methods = {}
 
 methods.signin_page = function(req, res){
-  res.render('auth/login')
+  res.render('auth/login', {
+    layout:false,
+    session: req.session
+})
 }
 
 methods.signup_page = function(req, res){
-  res.render('auth/register')
+  res.render('auth/register', {
+    layout:false,
+    session: req.session
+})
 }
 
 methods.signin = function(req, res){

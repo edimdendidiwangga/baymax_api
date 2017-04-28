@@ -20,8 +20,6 @@
   main {
      flex: 1 0 auto;
   }
-
-
   </style>
   </head>
 <body>
@@ -30,10 +28,12 @@
         <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo">Baymax Apps</a>
             <ul class="right hide-on-med-and-down">
 
-
+              <% if(session.name){ %>
+              <li>Welcome <%= session.name %></li> <li><a href="/signout">Sign Out</a></li>
+              <% }else{ %>
               <li><a href="/users/signin">Sign In</a></li>
               <li><a href="/users/signup">Sign Up</a></li>
-        
+              <% } %>
 
             </ul>
         </div>
