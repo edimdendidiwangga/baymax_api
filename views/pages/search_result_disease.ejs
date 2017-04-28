@@ -13,9 +13,9 @@
                         <i class="material-icons right">send</i>
                       </button>
                     </form>
-
+  
                     <form action="/sendSMS" method="post">
-                      <input type="hidden" name="sms" value="<%= data %>">
+                      <input type="hidden" name="sms" value="<%= data.name %>">
                       <input type="hidden" name="phone" value="<%= session.phone %>">
                       <button class="btn waves-effect waves-light" type="submit" name="action">Send to SMS
                         <i class="material-icons right">send</i>
