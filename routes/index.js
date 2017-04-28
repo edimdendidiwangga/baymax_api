@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var https = require('https');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -50,6 +51,46 @@ router.post('/sendEmail', function(req, res){
     res.redirect("/users/signin")
   }
 })
+
+router.post('/sendSMS', function(req,respon){
+  var data = JSON.stringify({
+   api_key: '1384db9a',
+   api_secret: '0dcf98678c6d2fe0',
+   to: req.body.phone,
+   from: '089685619462',
+   text: req.body.sms
+  });
+
+  var options = {
+   host: 'rest.nexmo.com',
+   path: '/sms/json',
+   port: 443,
+   method: 'POST',
+   headers: {
+     'Content-Type': 'application/json',
+     'Content-Length': Buffer.byteLength(data)
+   }
+  };
+
+  var req = https.request(options);
+
+  req.write(data);
+  req.end();
+
+  var responseData = '';
+  req.on('response', function(res){
+
+   res.on('data', function(chunk){
+     responseData += chunk;
+   });
+
+   res.on('end', function(){
+     console.log(JSON.parse(responseData));
+     respon.redirect('/')
+   });
+  });
+})
+
 
 router.get('/signout', function(req, res, next) {
     req.session.destroy(function(err) {

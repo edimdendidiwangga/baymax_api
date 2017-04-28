@@ -24,10 +24,12 @@ methods.signin = function(req, res){
     name: req.user.name,
     username: req.user.username,
     email: req.user.email,
+    phone: req.user.phone,
     role: req.user.role}, process.env.SECRET_KEY);
   var decoded = jwt.decode(token);
   req.session.name = decoded.name
   req.session.email = decoded.email
+  req.session.phone = decoded.phone
   req.session.username = decoded.username
   req.session.role = decoded.role
   res.redirect('/')
