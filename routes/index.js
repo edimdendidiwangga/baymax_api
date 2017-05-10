@@ -106,4 +106,8 @@ router.get('/signout', function(req, res, next) {
 })
 
 
+router.post('/searchVoice', (req, res, next) => {
+  
+});
+
 module.exports = router;
